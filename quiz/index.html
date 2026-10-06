@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Plano Chia - Monte seu plano alimentar personalizado</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --qz-verde: #2e7d32;
+      --qz-verde-light: #4caf50;
+      --qz-verde-dk: #1b5e20;
+      --qz-verde-soft: #e8f5e9;
+      --qz-beige: #f4ede4;
+      --qz-beige-2: #faf7f2;
+      --qz-ink: #1f2937;
+      --qz-line: #e7dfd5;
+      --qz-muted: #6b7280;
+      --qz-rojo: #e11d48;
+      --qz-gold: #f59e0b;
+      --qz-font: 'Poppins', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: #ece7e1;
+      font-family: var(--qz-font);
+      color: var(--qz-ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+    }
+
+    .qz-container {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      background: #ffffff;
+      min-height: 100vh;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    @media (min-width: 580px) {
+      body {
+        padding: 24px 12px;
+      }
+      .qz-container {
+        min-height: auto;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid var(--qz-line);
+      }
+    }
+
+    /* Topbar */
+    .qz__topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--qz-beige-2);
+      border-bottom: 1px solid var(--qz-line);
+    }
+
+    .qz__brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--qz-verde-dk);
+      letter-spacing: -0.02em;
+    }
+
+    .qz__brand-icon {
+      width: 30px;
+      height: 30px;
+      background: var(--qz-verde);
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .qz__secure-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--qz-verde);
+      background: var(--qz-verde-soft);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    /* Progress bar */
+    .qz__bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px 8px;
+      background: #fff;
+    }
+
+    .qz__bar {
+      flex: 1;
+      height: 9px;
+      background: var(--qz-beige);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .qz__bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--qz-verde-light), var(--qz-verde));
+      border-radius: 100px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .qz__step {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--qz-muted);
+      flex-shrink: 0;
+    }
+
+    /* Slides & Stages */
+    .qz__stage {
+      padding: 24px 20px 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .qz__slide {
+      display: none;
+      animation: qzFadeIn 0.35s ease;
+    }
+
+    .qz__slide.is-active {
+      display: block;
+    }
+
+    @keyframes qzFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography & Badges */
+    .qz__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fef2f2;
+      color: var(--qz-rojo);
+      border: 1px solid #fecdd3;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+
+    .qz__badge--green {
+      background: var(--qz-verde-soft);
+      color: var(--qz-verde-dk);
+      border-color: #c8e6c9;
+    }
+
+    .qz__title {
+      font-size: clamp(21px, 4.4vw, 26px);
+      font-weight: 800;
+      color: var(--qz-ink);
+      margin: 0 0 8px;
+      line-height: 1.25;
+      text-align: center;
+      letter-spacing: -0.02em;
+    }
+
+    .qz__hint {
+      font-size: 13.5px;
+      color: var(--qz-muted);
+      text-align: center;
+      margin: 0 0 20px;
+      line-height: 1.45;
+    }
+
+    /* Capa / Promessa */
+    .qz__promise {
+      text-align: center;
+    }
+
+    .qz__promise-title {
+      font-size: clamp(23px, 5.2vw, 30px);
+      font-weight: 900;
+      color: var(--qz-ink);
+      margin: 0 0 12px;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .qz__promise-title em {
+      font-style: normal;
+      color: var(--qz-verde);
+      position: relative;
+    }
+
+    .qz__promise-sub {
+      font-size: 14.5px;
+      color: var(--qz-muted);
+      margin: 0 auto 20px;
+      line-height: 1.5;
+      max-width: 440px;
+    }
+
+    .qz__promise-sub b {
+      color: var(--qz-ink);
+    }
+
+    .qz__promise-ba {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .qz__promise-ba-item {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      background: var(--qz-beige);
+      border: 1px solid var(--qz-line);
+      position: relative;
+    }
+
+    .qz__promise-ba-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .qz__promise-tag {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 100px;
+      white-space: nowrap;
+      backdrop-filter: blur(4px);
+    }
+
+    .qz__start {
+      width: 100%;
+      background: linear-gradient(135deg, var(--qz-verde), var(--qz-verde-dk));
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 18px 24px;
+      font-family: var(--qz-font);
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(46, 125, 50, 0.35);
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .qz__start:hover, .qz__start:active {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+      box-shadow: 0 14px 32px rgba(46, 125, 50, 0.45);
+    }
+
+    .qz__urgency {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--qz-rojo);
+    }
+
+    .qz__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--qz-rojo);
+      flex-shrink: 0;
+      animation: qzPulse 1.4s infinite;
+    }
+
+    @keyframes qzPulse {
+      0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.6); }
+      70% { box-shadow: 0 0 0 7px rgba(225, 29, 72, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+    }
+
+    /* Options & Buttons */
+    .qz__opts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .qz__opt {
+      width: 100%;
+      text-align: left;
+      background: var(--qz-beige-2);
+      border: 2px solid var(--qz-line);
+      border-radius: 14px;
+      padding: 15px 18px;
+      font-family: var(--qz-font);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qz-ink);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .qz__opt:hover {
+      border-color: var(--qz-verde);
+      background: #ffffff;
+      transform: translateX(4px);
+    }
+
+    .qz__opt.is-sel {
+      border-color: var(--qz-verde);
+      background: var(--qz-verde);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(46, 125, 50, 0.25);
+    }
+
+    .qz__emo {
+      font-size: 19px;
+      flex-shrink: 0;
+    }
+
+    /* Image grid options (Gender, Body, Zones) */
+    .qz__opts--img {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .qz__opts--body {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .qz__opt--img {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px 8px;
+      gap: 10px;
+    }
+
+    .qz__opt--img:hover {
+      transform: translateY(-3px);
+    }
+
+    .qz__opt-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--qz-beige);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .qz__opt-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .qz__opt-lbl {
+      font-size: 13.5px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .qz__opt--img.is-sel .qz__opt-lbl {
+      color: #ffffff;
+    }
+
+    /* Continue button (Multi-select) */
+    .qz__continue {
+      width: 100%;
+      margin-top: 22px;
+      background: linear-gradient(135deg, var(--qz-verde), var(--qz-verde-dk));
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 16px;
+      font-family: var(--qz-font);
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .qz__continue:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .qz__continue:not(:disabled):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(46, 125, 50, 0.3);
+    }
+
+    /* Analysis Screen */
+    .qz__analyze {
+      text-align: center;
+      padding: 24px 8px;
+    }
+
+    .qz__spinner {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 24px;
+      border: 4px solid var(--qz-beige);
+      border-top-color: var(--qz-verde);
+      border-radius: 50%;
+      animation: qzSpin 0.85s linear infinite;
+    }
+
+    @keyframes qzSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    .qz__anlist {
+      list-style: none;
+      margin: 26px auto 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 440px;
+    }
+
+    .qz__anlist li {
+      font-size: 13.5px;
+      color: var(--qz-muted);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: 0.45s ease;
+      padding-left: 32px;
+      position: relative;
+      text-align: left;
+      line-height: 1.45;
+    }
+
+    .qz__anlist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--qz-verde) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/12px no-repeat;
+    }
+
+    .qz__anlist li.is-in {
+      opacity: 1;
+      transform: translateY(0);
+      color: var(--qz-ink);
+      font-weight: 600;
+    }
+
+    /* Final Screen / VSL / Oferta */
+    .qz__final {
+      text-align: center;
+    }
+
+    .qz__final-txt {
+      font-size: 14px;
+      color: var(--qz-muted);
+      line-height: 1.5;
+      margin: 0 auto 20px;
+      max-width: 430px;
+    }
+
+    .qz__vslwrap {
+      width: 100%;
+      margin: 0 auto 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    /* Esperando o botão desbloquear */
+    .qz__wait {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--qz-muted);
+      padding: 14px 16px;
+      background: var(--qz-beige-2);
+      border: 1px dashed var(--qz-line);
+      border-radius: 14px;
+      margin-top: 6px;
+    }
+
+    .qz__wait-spin {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--qz-line);
+      border-top-color: var(--qz-verde);
+      border-radius: 50%;
+      animation: qzSpin 0.9s linear infinite;
+      flex-shrink: 0;
+    }
+
+    /* CTA Bloqueado / Desbloqueado */
+    .qz__ctawrap {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .qz__ctawrap.is-in {
+      display: block;
+      animation: qzFadeIn 0.5s ease;
+    }
+
+    .qz__cta {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: #fff !important;
+      text-decoration: none !important;
+      font-weight: 900;
+      font-size: 16.5px;
+      padding: 20px 24px;
+      border-radius: 100px;
+      box-shadow: 0 12px 30px rgba(22, 163, 74, 0.45);
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      text-align: center;
+    }
+
+    .qz__cta:hover, .qz__cta:active {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      box-shadow: 0 16px 36px rgba(22, 163, 74, 0.55);
+    }
+
+    /* Elementos de confiança brasileiros */
+    .qz__trust-box {
+      margin-top: 18px;
+      padding: 16px 14px;
+      background: var(--qz-beige-2);
+      border: 1px solid var(--qz-line);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .qz__trust-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: #374151;
+      font-weight: 600;
+    }
+
+    .qz__trust-row svg {
+      width: 16px;
+      height: 16px;
+      color: var(--qz-verde);
+      flex-shrink: 0;
+    }
+
+    .qz__payment-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 4px;
+      opacity: 0.85;
+      font-size: 11px;
+      font-weight: 700;
+      color: #4b5563;
+    }
+
+    .qz__pix-pill {
+      background: #e6f4ea;
+      color: #0d652d;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Responsivo mobile */
+    @media (max-width: 480px) {
+      .qz__stage {
+        padding: 20px 16px 28px;
+      }
+      .qz__opts--body {
+        gap: 8px;
+      }
+      .qz__opt--img {
+        padding: 8px 6px;
+      }
+      .qz__opt-lbl {
+        font-size: 12px;
+      }
+      .qz__opt {
+        padding: 14px 15px;
+        font-size: 14px;
+      }
+      .qz__cta {
+        font-size: 15px;
+        padding: 18px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="qz-container" id="qz">
+
+    <!-- Topbar com Logo e Selo Seguro -->
+    <div class="qz__topbar">
+      <div class="qz__brand">
+        <div class="qz__brand-icon">🌱</div>
+        <span>PLANO CHIA</span>
+      </div>
+      <div class="qz__secure-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        <span>100% SEGURO</span>
+      </div>
+    </div>
+
+    <!-- Barra de Progresso com contador de etapas -->
+    <div class="qz__bar-wrap" id="qzBarWrap" style="display:none;">
+      <div class="qz__bar"><div class="qz__bar-fill" id="qzBar"></div></div>
+      <span class="qz__step" id="qzStep">1 / 5</span>
+    </div>
+
+    <div class="qz__stage" id="qzStage">
+
+      <!-- ETAPA 0: PROMESSA / CAPA -->
+      <div class="qz__slide qz__promise is-active" data-step="promise">
+        <span class="qz__badge">🔥 DESAFIO DE VERÃO</span>
+        <h1 class="qz__promise-title">Descubra seu plano com <em>chia</em> para emagrecer com saúde</h1>
+        <p class="qz__promise-sub">Responda ao teste rápido e receba seu <b>plano personalizado</b> em menos de 1 minuto.</p>
+        <div class="qz__promise-ba">
+          <div class="qz__promise-ba-item"><img src="./imagens/genero-mulher.webp" alt="Plano para mulheres"></div>
+          <div class="qz__promise-ba-item"><img src="./imagens/genero-homem.webp" alt="Plano para homens"></div>
+        </div>
+        <button class="qz__start" id="qzStart">COMEÇAR AGORA →</button>
+        <p class="qz__hint" style="margin:14px 0 0;font-size:11.5px">Conteúdo informativo. Não substitui orientação de médico ou nutricionista.</p>
+      </div>
+
+      <!-- ETAPA 1: META DE QUILOS -->
+      <div class="qz__slide" data-step="q" data-barn="0">
+        <h2 class="qz__title">Quantos quilos você quer perder?</h2>
+        <p class="qz__hint">Selecione sua meta principal para calibrar o plano</p>
+        <div class="qz__opts" data-type="single">
+          <button class="qz__opt" data-next><span class="qz__emo">✨</span> Até 5 kg</button>
+          <button class="qz__opt" data-next><span class="qz__emo">💪</span> De 6 a 10 kg</button>
+          <button class="qz__opt" data-next><span class="qz__emo">🔥</span> De 11 a 15 kg</button>
+          <button class="qz__opt" data-next><span class="qz__emo">⚡</span> De 16 a 20 kg</button>
+          <button class="qz__opt" data-next><span class="qz__emo">🎯</span> Mais de 20 kg</button>
+        </div>
+      </div>
+
+      <!-- ETAPA 2: GÊNERO -->
+      <div class="qz__slide" data-step="q" data-barn="1">
+        <h2 class="qz__title">Qual é o seu gênero?</h2>
+        <p class="qz__hint">Selecione uma opção para personalizar seu plano</p>
+        <div class="qz__opts qz__opts--img" data-type="single">
+          <button class="qz__opt qz__opt--img" data-next data-gender="f">
+            <span class="qz__opt-img"><img src="./imagens/genero-mulher.webp" alt="Mulher"></span>
+            <span class="qz__opt-lbl">👩 Mulher</span>
+          </button>
+          <button class="qz__opt qz__opt--img" data-next data-gender="m">
+            <span class="qz__opt-img"><img src="./imagens/genero-homem.webp" alt="Homem"></span>
+            <span class="qz__opt-lbl">👨 Homem</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ETAPA 3: FAIXA DE IDADE -->
+      <div class="qz__slide" data-step="q" data-barn="2">
+        <h2 class="qz__title">Qual é a sua faixa de idade?</h2>
+        <p class="qz__hint">Usamos sua idade para ajustar as porções do plano</p>
+        <div class="qz__opts" data-type="single">
+          <button class="qz__opt" data-next><span class="qz__emo">🌸</span> Menos de 25 anos</button>
+          <button class="qz__opt" data-next><span class="qz__emo">💫</span> De 25 a 34 anos</button>
+          <button class="qz__opt" data-next><span class="qz__emo">🌟</span> De 35 a 44 anos</button>
+          <button class="qz__opt" data-next><span class="qz__emo">✨</span> De 45 a 54 anos</button>
+          <button class="qz__opt" data-next><span class="qz__emo">👑</span> 55 anos ou mais</button>
+        </div>
+      </div>
+
+      <!-- ETAPA 4: TIPO DE CORPO ATUAL (DINÂMICO) -->
+      <div class="qz__slide" data-step="q" data-barn="3">
+        <h2 class="qz__title">Como você descreveria o seu corpo hoje?</h2>
+        <p class="qz__hint">Selecione a opção mais parecida com seu estado atual</p>
+        <div class="qz__opts qz__opts--img qz__opts--body" data-type="single">
+          <button class="qz__opt qz__opt--img" data-next>
+            <span class="qz__opt-img">
+              <img data-img-f="./imagens/corpo-f-regular.webp"
+                   data-img-m="./imagens/corpo-m-regular.webp"
+                   src="" alt="Normal">
+            </span>
+            <span class="qz__opt-lbl">🙂 Leve sobrepeso</span>
+          </button>
+          <button class="qz__opt qz__opt--img" data-next>
+            <span class="qz__opt-img">
+              <img data-img-f="./imagens/corpo-f-flacido.webp"
+                   data-img-m="./imagens/corpo-m-flacido.webp"
+                   src="" alt="Flácido">
+            </span>
+            <span class="qz__opt-lbl">🌀 Flácido / Inchaço</span>
+          </button>
+          <button class="qz__opt qz__opt--img" data-next>
+            <span class="qz__opt-img">
+              <img data-img-f="./imagens/corpo-f-sobrepeso.webp"
+                   data-img-m="./imagens/corpo-m-sobrepeso.webp"
+                   src="" alt="Sobrepeso">
+            </span>
+            <span class="qz__opt-lbl">💗 Gordura localizada</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ETAPA 5: ZONAS DE FOCO (MULTI-SELECT DINÂMICO) -->
+      <div class="qz__slide" data-step="q" data-barn="4">
+        <h2 class="qz__title">Quais regiões você quer trabalhar mais?</h2>
+        <p class="qz__hint">Você pode marcar mais de uma opção</p>
+        <div class="qz__opts qz__opts--img" data-type="multi">
+          <button class="qz__opt qz__opt--img" data-multi>
+            <span class="qz__opt-img">
+              <img data-img-f="./imagens/area-f-abdomen.webp"
+                   data-img-m="./imagens/area-m-abdomen.webp"
+                   src="" alt="Abdômen">
+            </span>
+            <span class="qz__opt-lbl">🔻 Abdômen / Barriga</span>
+          </button>
+          <button class="qz__opt qz__opt--img" data-multi>
+            <span class="qz__opt-img">
+              <img data-img-f="./imagens/area-f-peito.webp"
+                   data-img-m="./imagens/area-m-peito.webp"
+                   src="" alt="Peito">
+            </span>
+            <span class="qz__opt-lbl">💠 Peitoral / Seios</span>
+          </button>
+          <button class="qz__opt qz__opt--img" data-multi>
+            <span class="qz__opt-img">
+              <img data-img-f="./imagens/area-f-flancos.webp"
+                   data-img-m="./imagens/area-m-flancos.webp"
+                   src="" alt="Cintura">
+            </span>
+            <span class="qz__opt-lbl">⏳ Cintura e Flancos</span>
+          </button>
+          <button class="qz__opt qz__opt--img" data-multi>
+            <span class="qz__opt-img">
+              <img data-img-f="./imagens/area-f-bracos.webp"
+                   data-img-m="./imagens/area-m-bracos.webp"
+                   src="" alt="Braços">
+            </span>
+            <span class="qz__opt-lbl">💪 Braços</span>
+          </button>
+        </div>
+        <button class="qz__continue" id="qzContinue" disabled>CONTINUAR →</button>
+      </div>
+
+      <!-- ETAPA 6: ANALISANDO AS RESPOSTAS (TELA DE TRANSIÇÃO) -->
+      <div class="qz__slide qz__analyze" data-step="analyze">
+        <div class="qz__spinner"></div>
+        <h2 class="qz__title">Analisando suas respostas…</h2>
+        <p class="qz__hint">Aguarde alguns segundos enquanto calculamos o seu perfil</p>
+        <ul class="qz__anlist" id="qzAnList">
+          <li>Comparando seu perfil com o de pessoas com o mesmo objetivo</li>
+          <li>Identificando seu perfil e sua região principal</li>
+          <li>Montando sua rotina de hábitos com chia</li>
+          <li>Ajustando as quantidades da receita ao seu gênero e idade</li>
+        </ul>
+      </div>
+
+      <!-- ETAPA 7: RESULTADO / VSL / CHECKOUT -->
+      <div class="qz__slide qz__final" data-step="final">
+        <span class="qz__badge qz__badge--green">✅ SEU PLANO ESTÁ PRONTO</span>
+        <h2 class="qz__title">Assista ao vídeo com o seu plano personalizado</h2>
+        <p class="qz__final-txt">Preste muita atenção até o final para aprender a receita ajustada ao seu perfil.</p>
+
+        <!-- Player: coloque o SEU vídeo em video/meu-video.mp4 (capa opcional em video/meu-poster.jpg) -->
+        <div class="qz__vslwrap" id="qzVsl">
+          <div style="position:relative;padding-top:177.77777777777777%;background:#111;">
+            <video id="qzVideo" controls playsinline preload="metadata" poster="./video/meu-poster.jpg"
+                   style="position:absolute;top:0;left:0;width:100%;height:100%;">
+              <source src="./video/meu-video.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- Mensagem de espera exibida enquanto o CTA estiver bloqueado -->
+        <div class="qz__wait" id="qzWait" style="display:none;">
+          <span class="qz__wait-spin"></span>
+          <span>Continue assistindo para desbloquear a sua receita completa...</span>
+        </div>
+
+        <!-- Botão CTA Desbloqueado com Preservação de UTMs -->
+        <div class="qz__ctawrap" id="qzCtaWrap">
+          <a class="qz__cta" id="qzCta" href="#">QUERO MEU PLANO PERSONALIZADO · R$ 67,00 →</a>
+          
+          <div class="qz__trust-box">
+            <div class="qz__trust-row">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              <span>Garantia Incondicional de 7 Dias (CDC)</span>
+            </div>
+            <div class="qz__trust-row">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              <span>Ambiente 100% Criptografado e Seguro</span>
+            </div>
+            <div class="qz__trust-row">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+              <span>Acesso Imediato no seu E-mail e WhatsApp</span>
+            </div>
+            <div class="qz__payment-badges">
+              <span class="qz__pix-pill">⚡ PIX APROVA NA HORA</span>
+              <span>• Cartão até 12x • Boleto</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <p style="max-width:540px;margin:0 auto;padding:16px 20px 28px;font-size:11px;line-height:1.5;color:#8a8a8a;text-align:center">
+    Este conteúdo é informativo e não substitui orientação médica ou nutricional. Os resultados variam de pessoa para pessoa e dependem de alimentação, rotina e atividade física. Gestantes, lactantes e pessoas com doenças ou em uso de medicamentos devem consultar um profissional de saúde antes de mudar a alimentação.
+  </p>
+
+  <script>
+  (function(){
+    /* ==========================================================================
+       CONFIGURAÇÕES DO FUNIL (EDITE AQUI FACILMENTE)
+       ========================================================================== */
+    const CONFIG = {
+      // 1. LINK DO SEU CHECKOUT (Kiwify, Hotmart, PerfectPay, Cakto, etc.):
+      checkoutUrl: 'https://pay.kiwify.com.br/SEU_CHECKOUT_AQUI',
+
+      // 2. TEMPO EM SEGUNDOS PARA O BOTÃO APARECER:
+      //    0   = Aparece IMEDIATAMENTE (ideal para você testar)
+      //    840 = 14 minutos (padrão de VSL em tráfego pago)
+      ctaDelaySeconds: 0,
+
+      // 3. TEXTO DO BOTÃO DE COMPRA:
+      ctaButtonText: 'QUERO MEU PLANO PERSONALIZADO · R$ 67,00 →',
+
+      // 4. PESSOAS ATIVAS NO FORMULÁRIO:
+      baseViewers: 38
+    };
+
+    function initQuiz() {
+      const qz = document.getElementById('qz');
+      if (!qz || qz.getAttribute('data-ready')) return;
+      qz.setAttribute('data-ready', '1');
+
+      const slides = qz.querySelectorAll('.qz__slide');
+      const bar = document.getElementById('qzBar');
+      const stepEl = document.getElementById('qzStep');
+      const barWrap = document.getElementById('qzBarWrap');
+      const TOTAL_QUESTIONS = 5;
+      let current = 0;
+      let gender = 'f';
+      let ctaArmed = false;
+
+      // Atualiza imagens de acordo com o gênero escolhido
+      function updateGenderImages() {
+        qz.querySelectorAll('img[data-img-f]').forEach(function(img) {
+          img.src = gender === 'm' ? img.getAttribute('data-img-m') : img.getAttribute('data-img-f');
+        });
+      }
+
+      // Constrói URL do checkout preservando parâmetros UTM da URL original
+      function buildCheckoutLink() {
+        try {
+          const currentUrl = new URL(window.location.href);
+          const checkout = new URL(CONFIG.checkoutUrl.startsWith('http') ? CONFIG.checkoutUrl : 'https://' + CONFIG.checkoutUrl);
+          
+          // Parâmetros importantes de rastreamento do tráfego pago
+          const trackParams = [
+            'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+            'utm_id', 'src', 'sck', 'fbclid', 'gclid', 'ttclid'
+          ];
+
+          trackParams.forEach(function(param) {
+            const val = currentUrl.searchParams.get(param);
+            if (val) {
+              checkout.searchParams.set(param, val);
+            }
+          });
+
+          const ctaBtn = document.getElementById('qzCta');
+          if (ctaBtn) {
+            ctaBtn.href = checkout.toString();
+            ctaBtn.textContent = CONFIG.ctaButtonText;
+          }
+        } catch (e) {
+          console.warn('Erro ao montar link do checkout:', e);
+        }
+      }
+
+      // Gerencia o aparecimento do botão com atraso (VSL pitch)
+      function armCta() {
+        if (ctaArmed) return;
+        ctaArmed = true;
+
+        const wrap = document.getElementById('qzCtaWrap');
+        const wait = document.getElementById('qzWait');
+        if (!wrap) return;
+
+        buildCheckoutLink();
+
+        if (CONFIG.ctaDelaySeconds <= 0) {
+          wrap.classList.add('is-in');
+          if (wait) wait.style.display = 'none';
+          return;
+        }
+
+        if (wait) wait.style.display = 'flex';
+
+        setTimeout(function() {
+          wrap.classList.add('is-in');
+          if (wait) wait.style.display = 'none';
+          wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, CONFIG.ctaDelaySeconds * 1000);
+      }
+
+      // Exibe a tela selecionada e atualiza a barra de progresso
+      function showSlide(index) {
+        slides.forEach(function(s) { s.classList.remove('is-active'); });
+        slides[index].classList.add('is-active');
+        current = index;
+
+        const stepType = slides[index].getAttribute('data-step');
+
+        if (stepType === 'q') {
+          barWrap.style.display = 'flex';
+          stepEl.style.visibility = 'visible';
+          const qIndex = parseInt(slides[index].getAttribute('data-barn'), 10);
+          bar.style.width = ((qIndex + 1) / TOTAL_QUESTIONS * 100) + '%';
+          stepEl.textContent = 'Etapa ' + (qIndex + 1) + ' de ' + TOTAL_QUESTIONS;
+        } else if (stepType === 'promise') {
+          barWrap.style.display = 'none';
+        } else {
+          barWrap.style.display = 'flex';
+          bar.style.width = '100%';
+          stepEl.style.visibility = 'hidden';
+        }
+
+        if (slides[index].classList.contains('qz__analyze')) {
+          runAnalysis();
+        }
+
+        if (stepType === 'final') {
+          armCta();
+        }
+
+        qz.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Botão inicial
+      const startBtn = document.getElementById('qzStart');
+      if (startBtn) {
+        startBtn.addEventListener('click', function() {
+          showSlide(current + 1);
+        });
+      }
+
+      // Perguntas de escolha única (avanço com leve micro-delay para feedback visual)
+      qz.querySelectorAll('[data-next]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const opts = btn.closest('.qz__opts');
+          opts.querySelectorAll('.qz__opt').forEach(function(o) { o.classList.remove('is-sel'); });
+          btn.classList.add('is-sel');
+
+          if (btn.hasAttribute('data-gender')) {
+            gender = btn.getAttribute('data-gender');
+            updateGenderImages();
+          }
+
+          setTimeout(function() {
+            showSlide(current + 1);
+          }, 240);
+        });
+      });
+
+      // Perguntas de múltipla escolha
+      const continueBtn = document.getElementById('qzContinue');
+      qz.querySelectorAll('[data-multi]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          btn.classList.toggle('is-sel');
+          const anySelected = btn.closest('.qz__opts').querySelectorAll('.is-sel').length > 0;
+          if (continueBtn) continueBtn.disabled = !anySelected;
+        });
+      });
+
+      if (continueBtn) {
+        continueBtn.addEventListener('click', function() {
+          showSlide(current + 1);
+        });
+      }
+
+      // Animação dos passos na tela de análise
+      function runAnalysis() {
+        const items = document.querySelectorAll('#qzAnList li');
+        items.forEach(function(li, i) {
+          li.classList.remove('is-in');
+          setTimeout(function() {
+            li.classList.add('is-in');
+          }, 400 + i * 750);
+        });
+
+        setTimeout(function() {
+          showSlide(current + 1);
+        }, 400 + items.length * 750 + 900);
+      }
+
+      // Contador de pessoas ao vivo com variação realista
+      const liveCounter = document.getElementById('qzLive');
+      if (liveCounter) {
+        setInterval(function() {
+          liveCounter.textContent = CONFIG.baseViewers + Math.floor(Math.random() * 10) - 4;
+        }, 3200);
+      }
+
+      // Inicialização
+      updateGenderImages();
+      buildCheckoutLink();
+      showSlide(0);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initQuiz);
+    } else {
+      initQuiz();
+    }
+    setTimeout(initQuiz, 400);
+  })();
+  </script>
+</body>
+</html>
