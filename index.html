@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2e7d32">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>Plano Chia · 28 dias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><span class="logo">🌱</span> Plano Chia</div>
+    <div class="prog" id="topProg"></div>
+  </header>
+  <main id="view" tabindex="-1"></main>
+  <nav class="tabs" id="tabs" aria-label="Navegação principal">
+    <a href="#/hoje" data-t="hoje"><i>📅</i><span>Hoje</span></a>
+    <a href="#/receitas" data-t="receitas"><i>🥣</i><span>Receitas</span></a>
+    <a href="#/videos" data-t="videos"><i>🎬</i><span>Vídeos</span></a>
+    <a href="#/compras" data-t="compras"><i>🛒</i><span>Compras</span></a>
+    <a href="#/diario" data-t="diario"><i>📓</i><span>Diário</span></a>
+    <a href="#/guia" data-t="guia"><i>📖</i><span>Guia</span></a>
+    <a href="#/bonus" data-t="bonus"><i>🎁</i><span>Bônus</span></a>
+  </nav>
+</div>
+<div id="modal" class="modal" hidden></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
