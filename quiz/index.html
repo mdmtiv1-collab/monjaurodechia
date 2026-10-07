@@ -867,7 +867,7 @@
 
         <!-- Botão CTA Desbloqueado com Preservação de UTMs -->
         <div class="qz__ctawrap" id="qzCtaWrap">
-          <a class="qz__cta" id="qzCta" href="https://pay.kiwify.com.br/SEU_CHECKOUT_AQUI">QUERO MEU PLANO PERSONALIZADO · R$ 67,00 →</a>
+          <a class="qz__cta" id="qzCta" href="https://lastlink.com/p/C77E8926E/checkout-payment/">QUERO MEU PLANO PERSONALIZADO · R$ 67,00 →</a>
           
           <div class="qz__trust-box">
             <div class="qz__trust-row">
@@ -905,7 +905,7 @@
        ========================================================================== */
     const CONFIG = {
       // 1. LINK DO SEU CHECKOUT (Kiwify, Hotmart, PerfectPay, Cakto, etc.):
-      checkoutUrl: 'https://pay.kiwify.com.br/SEU_CHECKOUT_AQUI',
+      checkoutUrl: 'https://lastlink.com/p/C77E8926E/checkout-payment/',
 
       // 2. TEMPO EM SEGUNDOS PARA O BOTÃO APARECER:
       //    0   = Aparece IMEDIATAMENTE (ideal para você testar)
@@ -1094,7 +1094,7 @@
 
       // Garantir que QUALQUER clique preserve window.location.search
       document.addEventListener('click', function(e) {
-        const link = e.target.closest('a#qzCta, a.qz__cta, a[href*="checkout"], a[href*="pay."]');
+        const link = e.target.closest('a#qzCta, a.qz__cta, a[href*="checkout"], a[href*="pay."], a[href*="lastlink.com"]');
         if (link && link.href) {
           try {
             const targetUrl = new URL(link.href, window.location.origin);
